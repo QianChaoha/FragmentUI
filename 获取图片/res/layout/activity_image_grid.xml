@@ -14,21 +14,23 @@
         android:background="#757575"
         android:orientation="horizontal"
         android:padding="15dp" >
+
         <TextView
             android:id="@+id/bt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
+            android:background="@drawable/rounded_selector"
             android:gravity="center"
             android:text="完成" />
     </LinearLayout>
 
     <GridView
         android:id="@+id/gridview"
-        android:layout_above="@id/btn_top"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@id/btn_top"
         android:layout_margin="8dp"
         android:horizontalSpacing="8dp"
         android:numColumns="3"

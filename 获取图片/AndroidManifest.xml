@@ -29,6 +29,8 @@
         </activity>
         <activity android:name="com.example.getpicture.PicAct" >
         </activity>
+        <activity android:name="com.example.getpicture.ImageGridAct" >
+        </activity>
     </application>
 
 </manifest>

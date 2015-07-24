@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public abstract class MyImgAdapterBaseAbs extends BaseAdapter{
+public abstract class MyImgAdapterBaseAbs<E> extends BaseAdapter{
 	private static DisplayImageOptions options;
 	private int nRes = -1;
 	protected final DisplayImageOptions getDisplayImageOptions(final int nRes){

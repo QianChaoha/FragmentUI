@@ -5,21 +5,18 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.getpicture.AlbumHelper.ImageBucket;
 import com.example.getpicture.utils.MyImgAdapterBaseAbs;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 //选择照片时，所有的照片
 public class PicAct extends Activity {
@@ -29,7 +26,6 @@ public class PicAct extends Activity {
 	public static final String EXTRA_IMAGE_LIST = "imagelist";
 	public static Bitmap bimap;
 	int index;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
