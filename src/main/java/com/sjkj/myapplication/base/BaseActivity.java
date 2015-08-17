@@ -76,8 +76,6 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Tools.initImageLoader(this);
-        Tools.initDisplayImageOptions();
         this.savedInstanceState = savedInstanceState;
         spUtil = new SharePreference(this, StaticData.SHAREPREFERENCENAME);
         mContext = this.getApplicationContext();

@@ -4,7 +4,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sjkj.myapplication.Interfaces.NetRequestResult;
+import com.sjkj.myapplication.interfaces.NetRequestResult;
 import com.sjkj.myapplication.http.parser.BackResult;
 
 import org.json.JSONObject;

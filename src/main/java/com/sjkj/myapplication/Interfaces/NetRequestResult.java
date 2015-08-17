@@ -1,4 +1,4 @@
-package com.sjkj.myapplication.Interfaces;
+package com.sjkj.myapplication.interfaces;
 
 
 import com.sjkj.myapplication.http.parser.BackResult;

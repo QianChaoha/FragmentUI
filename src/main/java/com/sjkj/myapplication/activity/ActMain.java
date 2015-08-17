@@ -13,6 +13,8 @@ import com.sjkj.myapplication.fragment.FmFour;
 import com.sjkj.myapplication.fragment.FmOne;
 import com.sjkj.myapplication.fragment.FmThree;
 import com.sjkj.myapplication.fragment.FmTwo;
+import com.sjkj.myapplication.interfaces.DialogInterface;
+import com.sjkj.myapplication.view.CommenDialog;
 
 public class ActMain extends BaseActivity implements View.OnClickListener {
     private RadioButton mRb1, mRb2, mRb3, mRb4;
@@ -22,6 +24,17 @@ public class ActMain extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
+        CommenDialog mCommenDialog=new CommenDialog(this, "标题", "内容", new DialogInterface() {
+            @Override
+            public void ok_click(View v) {
+                System.out.println("确定");
+            }
+
+            @Override
+            public void cancle_click(View v) {
+
+            }
+        });
         mPagerAdapter = new AdpPager(this);
         mViewPager
                 .setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
