@@ -10,7 +10,7 @@ import com.sjkj.myapplication.interfaces.DialogInterface;
 
 /**
  * Created by QianChao on 2015/8/17.
- * 通用的ProgressDialog
+ * 通用的Dialog
  */
 public class CommenDialog {
     private AlertDialog.Builder mDialog;
@@ -18,6 +18,13 @@ public class CommenDialog {
     private DialogInterface mDialogInterface;
     private AlertDialog mAlertDialog;
 
+    /**
+     *
+     * @param context
+     * @param title 标题
+     * @param content 内容
+     * @param mDialogInterface dialog点击事件 回调接口
+     */
     public CommenDialog(Context context, String title, String content, final DialogInterface mDialogInterface) {
         this.mDialogInterface = mDialogInterface;
         mDialog = new AlertDialog.Builder(context);
