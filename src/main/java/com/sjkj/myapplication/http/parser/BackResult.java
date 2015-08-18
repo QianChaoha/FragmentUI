@@ -1,5 +1,7 @@
 package com.sjkj.myapplication.http.parser;
 
+import  com.sjkj.myapplication.data.Error;
+
 /**
  * 用于定义返回结果集中共有的元素，比如result，code....之类
  */

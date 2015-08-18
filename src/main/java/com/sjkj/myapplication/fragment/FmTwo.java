@@ -1,7 +1,6 @@
 package com.sjkj.myapplication.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +11,15 @@ import android.view.ViewGroup;
 import com.android.volley.Request;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sjkj.myapplication.R;
+import com.sjkj.myapplication.activity.ActMain;
 import com.sjkj.myapplication.adapter.rcyAdp.BaseAdapterHelper;
 import com.sjkj.myapplication.adapter.rcyAdp.QuickAdapter;
 import com.sjkj.myapplication.data.ServerBaseResult;
 import com.sjkj.myapplication.data.ShopNearby;
 import com.sjkj.myapplication.http.NetJsonRequest;
-import com.sjkj.myapplication.http.parser.BackResult;
 import com.sjkj.myapplication.interfaces.NetRequestResult;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +39,29 @@ public class FmTwo extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        NetJsonRequest<ServerBaseResult> request = new NetJsonRequest<ServerBaseResult>();
-        request.NetJsonRequest(Request.Method.GET, url, null, new NetRequestResult<ServerBaseResult>() {
+        NetJsonRequest request = new NetJsonRequest();
+        JSONObject param = new JSONObject();
+        try {
+            param.put("lat", "31.234381");
+            param.put("lng", "121.473598");
+            param.put("shopTypeId", "");
+            param.put("keyword", "");
+            param.put("category", "0");
+            param.put("start", "0");
+            param.put("limit", "0");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        request.NetJsonRequest(Request.Method.GET, url, null, new NetRequestResult() {
             @Override
-            public void onResponse(ServerBaseResult response) {
-                List<ShopNearby> shopNearbies = response.getData();
+            public void onResponse(Object object) {
+                ServerBaseResult serverBaseResult= (ServerBaseResult) object;
+                List<ShopNearby> shopNearbies = serverBaseResult.getData();
+                System.out.println("shopNearbies" + shopNearbies.size());
                 if (shopNearbies != null && shopNearbies.size() > 0) {
-                    List<String> list=new ArrayList<String>();
-                    for (ShopNearby shopNearby:shopNearbies){
+                    List<String> list = new ArrayList<String>();
+                    for (ShopNearby shopNearby : shopNearbies) {
                         list.add(shopNearby.getShopLogo());
                     }
                     final QuickAdapter adapter = new QuickAdapter(getActivity(), R.layout.item_img, list) {
@@ -59,6 +75,7 @@ public class FmTwo extends Fragment {
                     mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
                 }
             }
-        }, null);
+        }, null, ServerBaseResult.class, ((ActMain) getActivity()).getRequestQueue());
+
     }
 }

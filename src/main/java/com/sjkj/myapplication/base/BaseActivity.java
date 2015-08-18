@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sjkj.myapplication.data.StaticData;
 import com.sjkj.myapplication.util.SharePreference;
 import com.sjkj.myapplication.util.Tools;
@@ -33,11 +35,20 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
         }
     };
 
+    /**
+     * 返回当前Activity的RequestQueue
+     *
+     * @return
+     */
+    public RequestQueue getRequestQueue() {
+        return requestQueue;
+    }
 
-    /***
+    /**
      * Handler回调方法
-     * */
+     */
     protected abstract void getMessage(Message msg);
+
     /**
      * 设置用户是否可以操作当前的页面
      * true为可以  false为不可以
@@ -60,7 +71,8 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
 
     /**
      * 布局ID
-     * @return  layoutID
+     *
+     * @return layoutID
      */
     protected abstract int getLayoutId();
 
@@ -73,6 +85,7 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
      * 初始化数据
      */
     protected abstract void initData();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,13 +109,13 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
     public void onClick(View arg0) {
         // TODO Auto-generated method stub
     }
+
     /**
      * Toast提醒
-     * */
+     */
     protected void showToast(String text) {
         Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
     }
-
 
 
     /**
@@ -112,18 +125,19 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
 
     /**
      * 显示/隐藏 等待框
-     * */
-    protected void showProgress(){
+     */
+    protected void showProgress() {
         mProgressDialog.show();
     }
-    protected void dismissProgress(){
+
+    protected void dismissProgress() {
         mProgressDialog.dismiss();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        isTouchEvent=true;
+        isTouchEvent = true;
     }
 
     @Override
@@ -146,9 +160,10 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
         requestQueue.cancelAll(this);
         mProgressDialog.dismiss();
     }
+
     /**
      * 拦截触摸事件
-     * */
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (isTouchEvent) {

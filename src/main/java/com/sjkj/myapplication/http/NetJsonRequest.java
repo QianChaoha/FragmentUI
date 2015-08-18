@@ -1,11 +1,12 @@
 package com.sjkj.myapplication.http;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sjkj.myapplication.interfaces.NetRequestResult;
-import com.sjkj.myapplication.http.parser.BackResult;
 
 import org.json.JSONObject;
 
@@ -15,8 +16,9 @@ import java.lang.reflect.Type;
 /**
  * Created by QianChao on 2015/8/14.
  */
-public class NetJsonRequest<E extends BackResult> {
+public class NetJsonRequest {
     private NetRequestResult mRequestResult;
+    private Class mClass;
     Gson mGson = new GsonBuilder().disableHtmlEscaping().create();
 
     /**
@@ -25,9 +27,10 @@ public class NetJsonRequest<E extends BackResult> {
      * @param jsonString json字符串
      * @return 实体类
      */
-    private E createClassFromJson(String jsonString) {
-        return (E) mGson.fromJson(jsonString, getEType());
-    }
+//    private E createClassFromJson(String jsonString) {
+//        System.out.println(getEType());
+//        return (E) mGson.fromJson(jsonString, getEType());
+//    }
 
     private Type getEType() {
         ParameterizedType pType = (ParameterizedType) this.getClass().getGenericSuperclass();
@@ -39,22 +42,36 @@ public class NetJsonRequest<E extends BackResult> {
         }
     }
 
-    public JsonObjectRequest NetJsonRequest(int method, String url, JSONObject param, final NetRequestResult mRequestResult, Response.ErrorListener errorListener) {
+    public void NetJsonRequest(int method, String url, JSONObject param, final NetRequestResult mRequestResult, Response.ErrorListener errorListener,Class mClass, RequestQueue mRequestQueue) {
         this.mRequestResult = mRequestResult;
+        this.mClass=mClass;
+        if (errorListener == null) {
+            //errorListener为null，使用默认的errorListener
+            errorListener = new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    System.out.println(volleyError.getMessage());
+                }
+            };
+        }
         JsonObjectRequest request = new JsonObjectRequest(method, url, param, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 String json = response.toString();
+                System.out.println("response"+json);
                 try {
-                    E e = createClassFromJson(json);
-                    mRequestResult.onResponse(e);
+                    Object object= mGson.fromJson(json, NetJsonRequest.this.mClass);
+                    mRequestResult.onResponse(object);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
         }, errorListener);
-        return request;
+       if (mRequestQueue!=null){
+           mRequestQueue.add(request);
+       }
     }
 
 }

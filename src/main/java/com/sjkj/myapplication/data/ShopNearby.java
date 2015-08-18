@@ -7,184 +7,192 @@ import java.io.Serializable;
 
 /**
  * 根据位置获取商家列表转至元数据结尾转至元数据起始URLGET /app/seller/nearby
- * 
+ *
  * @author cx
- * 
  */
 
-public class ShopNearby extends BackResult{
+public class ShopNearby extends BackResult {
 
-	private String sellerId;// "548542cca09cbd3620000013",
-	private int category;// 0,
-	private String shopSpecial;// "bbbbbbbbb",
-	private int orderNum;// 0
+    private String sellerId;// "548542cca09cbd3620000013",
+    private int category;// 0,
+    private String shopSpecial;// "bbbbbbbbb",
+    private int orderNum;// 0
 
-	private boolean isTop; // 是否置顶
-	private boolean hasBid; // 是否竞价过节目
-	private boolean approveState; // 是否认证
-	private boolean hasCoupon; // 是否有优惠券
-	private String broadcastMessage; // 广播消息
-	private int preferentialCategory;// 优惠类型0：无，1：抵用券，2：折扣券，3：赠券，4：公告
-	private String preferential; // 优惠信息
-	private long preferentialUpdated;// 优惠更新时间
-	private String shopName; // 商店名称
-	private String shopLogo; // 商店logo
-	private String shopAddress; // 商店地址
-	private double consumeAmount; // 人均消费金额
-	private double distance; // 距离 ，以当前坐标搜索时显示
-	private int concernNum; // 关注数量
-	private long createTime; // 创建时间
+    private boolean isTop; // 是否置顶
+    private boolean hasBid; // 是否竞价过节目
+    private boolean approveState; // 是否认证
+    private boolean hasCoupon; // 是否有优惠券
+    private String broadcastMessage; // 广播消息
+    private int preferentialCategory;// 优惠类型0：无，1：抵用券，2：折扣券，3：赠券，4：公告
+    private String preferential; // 优惠信息
+    private long preferentialUpdated;// 优惠更新时间
+    private String shopName; // 商店名称
+    private String shopLogo; // 商店logo
+    private String shopAddress; // 商店地址
+    private double consumeAmount; // 人均消费金额
+    private double distance; // 距离 ，以当前坐标搜索时显示
+    private int concernNum; // 关注数量
+    private long createTime; // 创建时间
+    private Location location;
 
-	public boolean isHasBid() {
-		return hasBid;
-	}
+    public Location getLocation() {
+        return location;
+    }
 
-	public void setHasBid(boolean hasBid) {
-		this.hasBid = hasBid;
-	}
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-	public String getBroadcastMessage() {
-		return broadcastMessage;
-	}
+    public boolean isHasBid() {
+        return hasBid;
+    }
 
-	public void setBroadcastMessage(String broadcastMessage) {
-		this.broadcastMessage = broadcastMessage;
-	}
+    public void setHasBid(boolean hasBid) {
+        this.hasBid = hasBid;
+    }
 
-	public int getPreferentialCategory() {
-		return preferentialCategory;
-	}
+    public String getBroadcastMessage() {
+        return broadcastMessage;
+    }
 
-	public void setPreferentialCategory(int preferentialCategory) {
-		this.preferentialCategory = preferentialCategory;
-	}
+    public void setBroadcastMessage(String broadcastMessage) {
+        this.broadcastMessage = broadcastMessage;
+    }
 
-	public String getPreferential() {
-		return preferential;
-	}
+    public int getPreferentialCategory() {
+        return preferentialCategory;
+    }
 
-	public void setPreferential(String preferential) {
-		this.preferential = preferential;
-	}
+    public void setPreferentialCategory(int preferentialCategory) {
+        this.preferentialCategory = preferentialCategory;
+    }
 
-	public long getPreferentialUpdated() {
-		return preferentialUpdated;
-	}
+    public String getPreferential() {
+        return preferential;
+    }
 
-	public void setPreferentialUpdated(long preferentialUpdated) {
-		this.preferentialUpdated = preferentialUpdated;
-	}
+    public void setPreferential(String preferential) {
+        this.preferential = preferential;
+    }
 
-	public double getConsumeAmount() {
-		return consumeAmount;
-	}
+    public long getPreferentialUpdated() {
+        return preferentialUpdated;
+    }
 
-	public void setConsumeAmount(double consumeAmount) {
-		this.consumeAmount = consumeAmount;
-	}
+    public void setPreferentialUpdated(long preferentialUpdated) {
+        this.preferentialUpdated = preferentialUpdated;
+    }
 
-	public long getCreateTime() {
-		return createTime;
-	}
+    public double getConsumeAmount() {
+        return consumeAmount;
+    }
 
-	public void setCreateTime(long createTime) {
-		this.createTime = createTime;
-	}
+    public void setConsumeAmount(double consumeAmount) {
+        this.consumeAmount = consumeAmount;
+    }
 
-	public boolean isApproveState() {
-		return approveState;
-	}
+    public long getCreateTime() {
+        return createTime;
+    }
 
-	public void setApproveState(boolean approveState) {
-		this.approveState = approveState;
-	}
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
 
-	public boolean isHasCoupon() {
-		return hasCoupon;
-	}
+    public boolean isApproveState() {
+        return approveState;
+    }
 
-	public void setHasCoupon(boolean hasCoupon) {
-		this.hasCoupon = hasCoupon;
-	}
+    public void setApproveState(boolean approveState) {
+        this.approveState = approveState;
+    }
 
-	public boolean isTop() {
-		return isTop;
-	}
+    public boolean isHasCoupon() {
+        return hasCoupon;
+    }
 
-	public void setTop(boolean isTop) {
-		this.isTop = isTop;
-	}
+    public void setHasCoupon(boolean hasCoupon) {
+        this.hasCoupon = hasCoupon;
+    }
 
-	public String getSellerId() {
-		return sellerId;
-	}
+    public boolean isTop() {
+        return isTop;
+    }
 
-	public void setSellerId(String sellerId) {
-		this.sellerId = sellerId;
-	}
+    public void setTop(boolean isTop) {
+        this.isTop = isTop;
+    }
 
-	public int getCategory() {
-		return category;
-	}
+    public String getSellerId() {
+        return sellerId;
+    }
 
-	public void setCategory(int category) {
-		this.category = category;
-	}
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
 
-	public String getShopName() {
-		return shopName;
-	}
+    public int getCategory() {
+        return category;
+    }
 
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
-	}
+    public void setCategory(int category) {
+        this.category = category;
+    }
 
-	public String getShopLogo() {
-		return shopLogo;
-	}
+    public String getShopName() {
+        return shopName;
+    }
 
-	public void setShopLogo(String shopLogo) {
-		this.shopLogo = shopLogo;
-	}
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
 
-	public String getShopAddress() {
-		return shopAddress;
-	}
+    public String getShopLogo() {
+        return shopLogo;
+    }
 
-	public void setShopAddress(String shopAddress) {
-		this.shopAddress = shopAddress;
-	}
+    public void setShopLogo(String shopLogo) {
+        this.shopLogo = shopLogo;
+    }
 
-	public String getShopSpecial() {
-		return shopSpecial;
-	}
+    public String getShopAddress() {
+        return shopAddress;
+    }
 
-	public void setShopSpecial(String shopSpecial) {
-		this.shopSpecial = shopSpecial;
-	}
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
+    }
 
-	public double getDistance() {
-		return distance;
-	}
+    public String getShopSpecial() {
+        return shopSpecial;
+    }
 
-	public void setDistance(double distance) {
-		this.distance = distance;
-	}
+    public void setShopSpecial(String shopSpecial) {
+        this.shopSpecial = shopSpecial;
+    }
 
-	public int getConcernNum() {
-		return concernNum;
-	}
+    public double getDistance() {
+        return distance;
+    }
 
-	public void setConcernNum(int concernNum) {
-		this.concernNum = concernNum;
-	}
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
 
-	public int getOrderNum() {
-		return orderNum;
-	}
+    public int getConcernNum() {
+        return concernNum;
+    }
 
-	public void setOrderNum(int orderNum) {
-		this.orderNum = orderNum;
-	}
+    public void setConcernNum(int concernNum) {
+        this.concernNum = concernNum;
+    }
+
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
+    }
 
 }
