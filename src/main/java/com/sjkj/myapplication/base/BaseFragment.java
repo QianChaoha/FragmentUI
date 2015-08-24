@@ -13,59 +13,78 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.sjkj.myapplication.application.MyApplication;
+import com.sjkj.myapplication.http.NetJsonRequest;
+import com.sjkj.myapplication.util.SharePreference;
 
 import java.lang.reflect.Field;
 
-public abstract class  BaseFragment extends Fragment {
-    protected RequestQueue requestQueue;
-    private ProgressDialog mProgressDialog;
-    private View mView;
+public abstract class BaseFragment extends Fragment {
 
-    @Nullable
+    private ProgressDialog mProgressDialog ;
+
+    /**
+     * 获取自定义Application
+     */
+    public MyApplication getMyApplication() {
+        return (MyApplication) getActivity().getApplication();
+    }
+
+    /**
+     * 获取请求队列
+     */
+    public RequestQueue getRequests() {
+        return getMyApplication().getRequestQueue();
+    }
+
+    /**
+     * 获取默认的图片加载器
+     */
+    public ImageLoader getDefaultImageLoader() {
+        return getMyApplication().getDefaultImgLoader();
+    }
+
+    /**
+     * 配置文件操作
+     */
+    protected SharePreference spUtil;
+    protected NetJsonRequest netJsonRequest;
+
+    protected RequestQueue requestQueue;
+    protected View mView;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (null != mView) {
-            ViewGroup parent = (ViewGroup) mView.getParent();
-            if (null != parent) {
-                parent.removeView(mView);
-            }
-        } else {
-            mView = inflater.inflate(getLayoutId(), null);
-        }
-        requestQueue = Volley.newRequestQueue(getActivity());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mView = inflater.inflate(getLayoutId(), null);
         mProgressDialog = new ProgressDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         initView(mView);
-        initData();
+        mProgressDialog.setMessage("获取数据中");
+        mProgressDialog.setCancelable(false);
+        netJsonRequest = new NetJsonRequest(mProgressDialog, getRequests());
         return mView;
     }
-    protected Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            getMessage(msg);
-        }
-    };
-    /***
-     * Handler回调方法
-     * */
-    protected abstract void getMessage(Message msg);
+
     /**
      * 与activity UI交互
      * 或
      * 同一activity中的其他fragment UI交互时，重写此方法
      * simple: Button btn=getActivity().findViewById(R.id.btn);
-     * */
+     */
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initData();
     }
 
     /**
      * 布局ID
-     * @return  layoutID
+     *
+     * @return layoutID
      */
     protected abstract int getLayoutId();
+
     /**
      * 初始化布局
      */
@@ -78,24 +97,26 @@ public abstract class  BaseFragment extends Fragment {
 
     /**
      * Toast提醒
-     * */
+     */
     protected void showToast(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
+
     /**
      * 显示/隐藏 等待框
-     * */
-    protected void showProgress(){
+     */
+    protected void showProgress() {
         mProgressDialog.show();
     }
-    protected void dismissProgress(){
+
+    protected void dismissProgress() {
         mProgressDialog.dismiss();
     }
 
-    /***
+    /**
      * 当解除与activity关联时
      * 解决fragment嵌套fragment出现的问题：no activity
-     * */
+     */
     @Override
     public void onDetach() {
         super.onDetach();

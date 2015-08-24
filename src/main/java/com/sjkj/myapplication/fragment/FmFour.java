@@ -1,15 +1,14 @@
 package com.sjkj.myapplication.fragment;
 
+import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sjkj.myapplication.R;
-import com.sjkj.myapplication.adapter.rcyAdp.BaseAdapterHelper;
-import com.sjkj.myapplication.adapter.rcyAdp.QuickAdapter;
 import com.sjkj.myapplication.base.BaseFragment;
+import com.sjkj.myapplication.commen.NetImageAdapter;
 import com.sjkj.myapplication.data.Msg;
 import com.sjkj.myapplication.view.SwipeRefreshLayout;
 
@@ -19,22 +18,23 @@ import java.util.List;
 public class FmFour extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLayout.OnLoadListener {
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
-    @Override
-    protected void getMessage(Message msg) {
-        switch (msg.what){
-            case Msg.SUCCESS:
-                mSwipeRefreshLayout.setRefreshing(false);
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case Msg.SUCCESS:
+                    mSwipeRefreshLayout.setRefreshing(false);
 //                Snackbar.make(getView(), "下拉刷新成功", Snackbar.LENGTH_SHORT).show();
 
-                break;
-            case Msg.ERROR:
-                mSwipeRefreshLayout.setLoading(false);
+                    break;
+                case Msg.ERROR:
+                    mSwipeRefreshLayout.setLoading(false);
 //                Snackbar.make(getView(), "上拉加载成功", Snackbar.LENGTH_SHORT).show();
 
-                break;
+                    break;
+            }
         }
-    }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -63,14 +63,15 @@ public class FmFour extends BaseFragment implements SwipeRefreshLayout.OnRefresh
         for (int i = 0; i < 30; i++) {
             list.add(url);
         }
-        final QuickAdapter adapter = new QuickAdapter(getActivity(), R.layout.item_img, list) {
-            @Override
-            protected void convert(BaseAdapterHelper helper, Object item) {
-                ImageLoader.getInstance().displayImage((String) item, helper.getImageView(R.id.img));
-            }
-        };
+//        final QuickAdapter adapter = new QuickAdapter(getActivity(), R.layout.item_img, list) {
+//            @Override
+//            protected void convert(BaseAdapterHelper helper, Object item) {
+//                ImageLoader.getInstance().displayImage((String) item, helper.getImageView(R.id.img));
+//            }
+//        };
 
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(new NetImageAdapter(list,getActivity(),getDefaultImageLoader()));
+
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
     }
 

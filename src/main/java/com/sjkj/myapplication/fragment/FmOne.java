@@ -22,10 +22,7 @@ public class FmOne extends BaseFragment {
     private TextView tv_collection, tv_make;
     private ImageView line;
     private int currentIndex;
-    @Override
-    protected void getMessage(Message msg) {
 
-    }
 
     @Override
     protected int getLayoutId() {

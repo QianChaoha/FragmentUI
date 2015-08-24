@@ -1,4 +1,4 @@
-package com.sjkj.myapplication.view;
+package com.sjkj.myapplication.commen;
 
 import android.app.AlertDialog;
 import android.content.Context;

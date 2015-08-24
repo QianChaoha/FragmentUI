@@ -1,14 +1,10 @@
 package com.sjkj.myapplication.activity;
 
-import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.sjkj.myapplication.R;
 import com.sjkj.myapplication.adapter.AdpPager;
 import com.sjkj.myapplication.base.BaseActivity;
@@ -17,7 +13,7 @@ import com.sjkj.myapplication.fragment.FmOne;
 import com.sjkj.myapplication.fragment.FmThree;
 import com.sjkj.myapplication.fragment.FmTwo;
 import com.sjkj.myapplication.interfaces.DialogInterface;
-import com.sjkj.myapplication.view.CommenDialog;
+import com.sjkj.myapplication.commen.CommenDialog;
 
 public class ActMain extends BaseActivity implements View.OnClickListener {
     private RadioButton mRb1, mRb2, mRb3, mRb4;
@@ -129,14 +125,4 @@ public class ActMain extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
-
-    @Override
-    protected void getMessage(Message msg) {
-
-    }
-
-    @Override
-    protected void request() {
-
-    };
 }
