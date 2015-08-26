@@ -3,9 +3,6 @@ package com.sjkj.myapplication.base;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
 import com.sjkj.myapplication.application.MyApplication;
 import com.sjkj.myapplication.http.NetJsonRequest;
 import com.sjkj.myapplication.util.SharePreference;
@@ -53,17 +49,17 @@ public abstract class BaseFragment extends Fragment {
     protected NetJsonRequest netJsonRequest;
 
     protected RequestQueue requestQueue;
-    protected View mView;
+    protected View mRootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayoutId(), null);
+        mRootView = inflater.inflate(getLayoutId(), null);
         mProgressDialog = new ProgressDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
-        initView(mView);
+        initView(mRootView);
         mProgressDialog.setMessage("获取数据中");
         mProgressDialog.setCancelable(false);
         netJsonRequest = new NetJsonRequest(mProgressDialog, getRequests());
-        return mView;
+        return mRootView;
     }
 
     /**

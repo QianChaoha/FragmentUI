@@ -14,16 +14,16 @@ import android.widget.TextView;
 
 import com.sjkj.myapplication.R;
 import com.sjkj.myapplication.base.BaseFragment;
+import com.sjkj.myapplication.commen.CommenDialog;
 import com.sjkj.myapplication.fragment.childFragment.FmOneOne;
 import com.sjkj.myapplication.fragment.childFragment.FmOneTwo;
+import com.sjkj.myapplication.interfaces.DialogInterface;
 
 public class FmOne extends BaseFragment {
     private ViewPager vp;
     private TextView tv_collection, tv_make;
     private ImageView line;
     private int currentIndex;
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.fm_one;
@@ -37,6 +37,17 @@ public class FmOne extends BaseFragment {
         line = (ImageView) view.findViewById(R.id.line);
         tv_collection.setTextColor(Color.rgb(248, 82, 0));
         tv_make.setTextColor(Color.rgb(99, 99, 99));
+        CommenDialog dialog=new CommenDialog(getActivity(), "标题", "内容", new DialogInterface() {
+            @Override
+            public void ok_click(View v) {
+
+            }
+
+            @Override
+            public void cancle_click(View v) {
+
+            }
+        });
     }
 
     @Override

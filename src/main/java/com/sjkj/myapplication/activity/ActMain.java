@@ -23,18 +23,8 @@ public class ActMain extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        CommenDialog mCommenDialog=new CommenDialog(this, "标题", "内容", new DialogInterface() {
-            @Override
-            public void ok_click(View v) {
-                System.out.println("确定");
-            }
-
-            @Override
-            public void cancle_click(View v) {
-
-            }
-        });
         mPagerAdapter = new AdpPager(this);
+        mViewPager.setOffscreenPageLimit(0);
         mViewPager
                 .setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override

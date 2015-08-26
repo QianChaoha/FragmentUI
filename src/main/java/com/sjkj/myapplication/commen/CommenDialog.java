@@ -7,16 +7,16 @@ import android.widget.TextView;
 
 import com.sjkj.myapplication.R;
 import com.sjkj.myapplication.interfaces.DialogInterface;
+import com.sjkj.myapplication.view.MyDialog;
 
 /**
  * Created by QianChao on 2015/8/17.
  * 通用的Dialog
  */
 public class CommenDialog {
-    private AlertDialog.Builder mDialog;
+    private MyDialog mDialog;
     private TextView tv_title, tv_content, tv_ok, tv_cancle;
     private DialogInterface mDialogInterface;
-    private AlertDialog mAlertDialog;
 
     /**
      *
@@ -27,8 +27,9 @@ public class CommenDialog {
      */
     public CommenDialog(Context context, String title, String content, final DialogInterface mDialogInterface) {
         this.mDialogInterface = mDialogInterface;
-        mDialog = new AlertDialog.Builder(context);
         View view = View.inflate(context, R.layout.progress_dialog_layout, null);
+        mDialog = new MyDialog(context,view,R.style.dialog);
+
         tv_title = (TextView) view.findViewById(R.id.tv_title);
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         tv_ok = (TextView) view.findViewById(R.id.tv_ok);
@@ -41,7 +42,7 @@ public class CommenDialog {
         tv_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAlertDialog.dismiss();
+                mDialog.dismiss();
                 mDialogInterface.ok_click(v);
             }
         });
@@ -49,13 +50,11 @@ public class CommenDialog {
         tv_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAlertDialog.dismiss();
+                mDialog.dismiss();
                 mDialogInterface.cancle_click(v);
             }
         });
-        mDialog.setView(view);
-        mAlertDialog = mDialog.create();
-        mAlertDialog.show();
+        mDialog.show();
     }
 
 }

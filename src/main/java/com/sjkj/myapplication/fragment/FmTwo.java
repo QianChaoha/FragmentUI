@@ -3,7 +3,6 @@ package com.sjkj.myapplication.fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import com.android.volley.Request;
 import com.sjkj.myapplication.R;
 import com.sjkj.myapplication.base.BaseFragment;
@@ -11,9 +10,7 @@ import com.sjkj.myapplication.commen.NetImageAdapter;
 import com.sjkj.myapplication.data.ServerBaseResult;
 import com.sjkj.myapplication.data.ShopNearby;
 import com.sjkj.myapplication.interfaces.NetRequestResult;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class FmTwo extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        mRecyclerView = (RecyclerView) mView.findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerView);
     }
 
     @Override
