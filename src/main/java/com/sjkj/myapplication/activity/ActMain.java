@@ -43,8 +43,8 @@ public class ActMain extends BaseActivity implements View.OnClickListener {
 
         mPagerAdapter.addTab(FmOne.class, null);
         mPagerAdapter.addTab(FmTwo.class, null);
-        mPagerAdapter.addTab(FmThree.class, null);
-        mPagerAdapter.addTab(FmFour.class, null);
+//        mPagerAdapter.addTab(FmThree.class, null);
+//        mPagerAdapter.addTab(FmFour.class, null);
         mViewPager.setAdapter(mPagerAdapter);
     }
 

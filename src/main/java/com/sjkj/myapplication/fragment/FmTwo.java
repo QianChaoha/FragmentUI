@@ -27,6 +27,7 @@ public class FmTwo extends BaseFragment {
     @Override
     protected void initView(View view) {
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
     }
 
     @Override
@@ -44,7 +45,7 @@ public class FmTwo extends BaseFragment {
             System.out.println(e.getMessage());
         }
 
-        netJsonRequest.netJsonRequest(Request.Method.GET, url, param, ServerBaseResult.class,
+        netJsonRequest.netJsonRequest(Request.Method.GET, url, null, ServerBaseResult.class,
                 new NetRequestResult<ServerBaseResult>() {
                     @Override
                     public void onResponse(ServerBaseResult result) {
@@ -56,7 +57,7 @@ public class FmTwo extends BaseFragment {
                                 list.add(shopNearby.getShopLogo());
                             }
                             mRecyclerView.setAdapter(new NetImageAdapter(list, getActivity(), getDefaultImageLoader()));
-                            mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+
                         }
                     }
                 }, null);
