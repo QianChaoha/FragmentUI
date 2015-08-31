@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjkj.myapplication.activity.ActMain"
+    tools:ignore="MergeRootFrame"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="#F87943"
+        android:id="@+id/titlebar_myExpression"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="one"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+        <TextView
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:id="@+id/my_collection_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="btn" />
+
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPage"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+   <!-- <FrameLayout
+        android:id="@+id/container"
+       android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />-->
+    <RadioGroup
+        android:layout_alignParentBottom="true"
+        android:id="@+id/buttom_tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            style="@style/radioButtomStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:drawableTop="@drawable/expression_house_selector"
+            android:text="表情屋"
+            android:textColor="@drawable/main_color_selector" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            style="@style/radioButtomStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/my_expression_selector"
+            android:text="我的表情"
+            android:textColor="@drawable/main_color_selector" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            style="@style/radioButtomStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/search_selector"
+            android:text="搜索"
+            android:textColor="@drawable/main_color_selector" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            style="@style/radioButtomStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/more_selector"
+            android:text="更多"
+            android:textColor="@drawable/main_color_selector" />
+    </RadioGroup>
+</LinearLayout>
